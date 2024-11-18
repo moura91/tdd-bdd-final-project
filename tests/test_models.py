@@ -120,33 +120,33 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(product.category, found_product.category)
 
     def test_update_a_product(self):
-            """It should Update a Product"""
-            product = ProductFactory()
-            product.id = None
-            product.create()
-            self.assertIsNotNone(product.id)
-            # Change it an save it
-            product.description = "testing"
-            original_id = product.id
-            product.update()
-            self.assertEqual(product.id, original_id)
-            self.assertEqual(product.description, "testing")
-            # Fetch it back and make sure the id hasn't changed
-            # but the data did change
-            products = Product.all()
-            self.assertEqual(len(products), 1)
-            self.assertEqual(products[0].id, original_id)
-            self.assertEqual(products[0].description, "testing")
+        """It should Update a Product"""
+        product = ProductFactory()
+        product.id = None
+        product.create()
+        self.assertIsNotNone(product.id)
+        # Change it an save it
+        product.description = "testing"
+        original_id = product.id
+        product.update()
+        self.assertEqual(product.id, original_id)
+        self.assertEqual(product.description, "testing")
+        # Fetch it back and make sure the id hasn't changed
+        # but the data did change
+        products = Product.all()
+        self.assertEqual(len(products), 1)
+        self.assertEqual(products[0].id, original_id)
+        self.assertEqual(products[0].description, "testing")
 
     def test_not_update_a_product(self):
-            """It should Not Update a Product"""
-            product = ProductFactory()
-            product.id = None
-            product.create()
-            self.assertIsNotNone(product.id)
-            # Change it an save it
-            product.id = 0
-            self.assertRaises(DataValidationError, product.update)
+        """It should Not Update a Product"""
+        product = ProductFactory()
+        product.id = None
+        product.create()
+        self.assertIsNotNone(product.id)
+        # Change it an save it
+        product.id = 0
+        self.assertRaises(DataValidationError, product.update)
 
     def test_delete_a_product(self):
         """It should Delete a product """
@@ -219,7 +219,7 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(found.count(), count)
         for product in found:
             self.assertEqual(product.price, price)
-        
+
         found = Product.find_by_price(str(price))
         self.assertEqual(found.count(), count)
         for product in found:

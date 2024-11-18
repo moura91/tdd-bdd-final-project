@@ -275,7 +275,6 @@ class TestProductRoutes(TestCase):
         for product in data:
             self.assertEqual(product["available"], True)
 
-
     ######################################################################
     # Utility functions
     ######################################################################
